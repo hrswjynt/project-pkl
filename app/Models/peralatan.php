@@ -2,10 +2,18 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Factories\HasFactory;
+use App\Models\DaftarPeralatan;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class peralatan extends Model
 {
     use HasFactory;
+
+    protected $guarded=['id'];
+    public function daftarPeralatan(){
+        return $this->belongsTo(DaftarPeralatan::class);
+    }
 }
+
+

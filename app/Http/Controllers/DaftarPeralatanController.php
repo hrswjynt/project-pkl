@@ -2,8 +2,8 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\peralatan;
 use Illuminate\Http\Request;
+use App\Models\DaftarPeralatan;
 
 class DaftarPeralatanController extends Controller
 {
@@ -14,7 +14,11 @@ class DaftarPeralatanController extends Controller
      */
     public function index()
     {
-        //
+        $peralatan=DaftarPeralatan::with('peralatan')->get();
+        dd($peralatan);
+        return view('home',[
+            'peralatan'=> $peralatan
+        ]);
     }
 
     /**
@@ -41,10 +45,10 @@ class DaftarPeralatanController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\peralatan  $peralatan
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show(peralatan $peralatan)
+    public function show($id)
     {
         //
     }
@@ -52,10 +56,10 @@ class DaftarPeralatanController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Models\peralatan  $peralatan
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit(peralatan $peralatan)
+    public function edit($id)
     {
         //
     }
@@ -64,10 +68,10 @@ class DaftarPeralatanController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\peralatan  $peralatan
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, peralatan $peralatan)
+    public function update(Request $request, $id)
     {
         //
     }
@@ -75,10 +79,10 @@ class DaftarPeralatanController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\peralatan  $peralatan
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy(peralatan $peralatan)
+    public function destroy($id)
     {
         //
     }

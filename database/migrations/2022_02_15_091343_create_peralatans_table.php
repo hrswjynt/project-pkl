@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreatePeralatanTable extends Migration
+class CreatePeralatansTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,11 +13,12 @@ class CreatePeralatanTable extends Migration
      */
     public function up()
     {
-        Schema::create('peralatan', function (Blueprint $table) {
+        Schema::create('peralatans', function (Blueprint $table) {
             $table->id();
             $table->string('jenis', 100);
             $table->string('merk', 100);
             $table->Text('seri')->nullable();
+            $table->timestamps();
         });
     }
 
@@ -28,6 +29,6 @@ class CreatePeralatanTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('peralatan');
+        Schema::dropIfExists('peralatans');
     }
 }

@@ -14,12 +14,12 @@ class PeralatanSeeder extends Seeder
      */
     public function run()
     {
-        DB::table('peralatan')->insert([
-            [
-                'jenis' => 'Monitor',
-                'merk' => 'Asus',
-                'Seri' => 'TUF',
-            ]
-        ]);
+        // DB::table('peralatan')->insert([
+        //     [
+        //         'jenis' => 'Monitor',
+        //         'merk' => 'Asus',
+        //         'Seri' => 'TUF',
+        //     ]
+        // ]);
     }
 }

@@ -47,7 +47,7 @@
 
         <div class="card-body">
             <div class="col-md-4 offset-md-4">
-                <form action="{{ url('peralatan') }}" method="post">
+                <form action="/peralatan" method="post">
                     @csrf
                     <div class="form-group">
                         <label>Jenis</label>

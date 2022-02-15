@@ -61,7 +61,7 @@
                     <th>Divisi</th>
                     <th></th>
                 </thead>
-                {{-- <tbody>
+                <tbody>
                     @foreach ($peralatan as $item)
                         <tr>
                             <td>{{ $loop->iteration }}</td>
@@ -82,7 +82,7 @@
                             </td>
                         </tr>
                     @endforeach
-                </tbody> --}}
+                </tbody>
             </table>
         </div>
     </div>
