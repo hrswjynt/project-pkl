@@ -2,6 +2,10 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\JenisPeralatanController;
+use App\Http\Controllers\LoginController;
+use App\Http\Controllers\LogoutController;
+use App\Http\Controllers\RegisterController;
+use App\Http\Controllers\RegistrationController;
 
 /*
 |--------------------------------------------------------------------------
@@ -14,22 +18,25 @@ use App\Http\Controllers\JenisPeralatanController;
 |
 */
 
-Route::get('/', function () {
-    return view('login');
+Route::middleware('guest')->group(function () {
+    Route::get('/login', [LoginController::class, 'create'])->name('login');
+    Route::post('/login', [LoginController::class, 'store']);
+
+    Route::get('/register', [RegistrationController::class, 'create'])->name('register');
+    Route::post('/register', [RegistrationController::class, 'store']);
 });
 
-Route::get('/register', function () {
-    return view('register');
+Route::middleware('auth')->group(function () {
+    Route::get('/', function () {
+        return view('home');
+    });
+
+    Route::get('/peralatan', [JenisPeralatanController::class, 'data']);
+    Route::get('/peralatan/add', [JenisPeralatanController::class, 'add']);
+    Route::post('/peralatan', [JenisPeralatanController::class, 'addProcess']);
+    Route::get('/peralatan/edit/{id}', [JenisPeralatanController::class, 'edit']);
+    Route::patch('peralatan/{id}', [JenisPeralatanController::class, 'editProcess']);
+    Route::delete('peralatan/{id}', [JenisPeralatanController::class, 'delete']);
+
+    Route::get('logout', [LogoutController::class, 'index']);
 });
-
-
-Route::get('home', function () {
-    return view('home');
-});
-
-Route::get('/peralatan', [JenisPeralatanController::class, 'data']);
-Route::get('/peralatan/add', [JenisPeralatanController::class, 'add']);
-Route::post('/peralatan', [JenisPeralatanController::class, 'addProcess']);
-Route::get('/peralatan/edit/{id}', [JenisPeralatanController::class, 'edit']);
-Route::patch('peralatan/{id}', [JenisPeralatanController::class, 'editProcess']);
-Route::delete('peralatan/{id}', [JenisPeralatanController::class, 'delete']);
