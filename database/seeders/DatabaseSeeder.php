@@ -2,7 +2,10 @@
 
 namespace Database\Seeders;
 
+use App\Models\Merk;
+use App\Models\Seri;
 use App\Models\User;
+use App\Models\Jenis;
 use App\Models\peralatan;
 use App\Models\DaftarPeralatan;
 use Illuminate\Database\Seeder;
@@ -18,24 +21,52 @@ class DatabaseSeeder extends Seeder
     {
         // \App\Models\User::factory(10)->create();
         User::factory(10)->create();
-     
-
-        peralatan::create([
-            'jenis' => 'Monitor',
-            'merk' => 'Asus',
-            'seri' => 'TUF',
-            
+        User::create([
+            'name' => 'admin',
+            'email' => 'admin@gmail.com',
+            'password' => '123'
         ]);
-        peralatan::create([
-            'jenis' => 'Laptop',
-            'merk' => 'Acer',
-            'seri' => 'Predator',
-            
+        Jenis::create([
+            'jenis' => 'Laptop'
         ]);
-        peralatan::create([
-            'jenis' => 'Printer',
-            'merk' => 'Epson',
-            'seri' => 'L3660',
+        Jenis::create([
+            'jenis' => 'Printer'
+        ]);
+        Jenis::create([
+            'jenis' => 'Monitor'
+        ]);
+        Merk::create([
+            'merk' => 'Asus'
+        ]);
+        Merk::create([
+            'merk' => 'Acer'
+        ]);
+        Merk::create([
+            'merk' => 'Epson'
+        ]);
+        Seri::create([
+            'seri' => 'TUF'
+        ]);
+        Seri::create([
+            'seri' => 'Predator'
+        ]);
+        Seri::create([
+            'seri' => 'l3310'
+        ]);
+        Peralatan::create([
+            'jenis_id' => 1,
+            'merk_id' => 1,
+            'seri_id' => 1
+        ]);
+        Peralatan::create([
+            'jenis_id' => 2,
+            'merk_id' => 2,
+            'seri_id' => 2
+        ]);
+        Peralatan::create([
+            'jenis_id' => 3,
+            'merk_id' => 3,
+            'seri_id' => 3
         ]);
         DaftarPeralatan::factory(10)->create();
     }
