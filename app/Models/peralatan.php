@@ -10,10 +10,21 @@ class peralatan extends Model
 {
     use HasFactory;
 
-    protected $guarded=['id'];
-    public function daftarPeralatan(){
+    protected $guarded = ['id'];
+    public function daftarPeralatan()
+    {
         return $this->hasMany(DaftarPeralatan::class);
     }
+    public function jenis()
+    {
+        return $this->belongsTo(Jenis::class);
+    }
+    public function merk()
+    {
+        return $this->belongsTo(Merk::class);
+    }
+    public function seri()
+    {
+        return $this->belongsTo(Seri::class);
+    }
 }
-
-

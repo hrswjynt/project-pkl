@@ -2,6 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Merk;
+use App\Models\Seri;
+use App\Models\Jenis;
 use App\Models\peralatan;
 use Illuminate\Http\Request;
 use App\Models\DaftarPeralatan;
@@ -15,18 +18,22 @@ class DaftarPeralatanController extends Controller
      */
     public function index()
     {
-        $peralatan=DaftarPeralatan::with('peralatan')->get();
+        $peralatan = DaftarPeralatan::with(['jenis', 'merk', 'seri'])->get();
         // dd($peralatan);
-        return view('home',[
-            'peralatan'=> $peralatan
+        return view('home', [
+            'peralatan' => $peralatan
         ]);
     }
 
     public function createView()
     {
-        $peralatan=peralatan::all();
-        return view('add-peralatan',[
-            'peralatan'=> $peralatan,
+        $jenis = Jenis::get();
+        $merk = Merk::get();
+        $seri = Seri::get();
+        return view('add-peralatan', [
+            'jenis' => $jenis,
+            'merk' => $merk,
+            'seri' => $seri,
         ]);
     }
 
@@ -39,32 +46,29 @@ class DaftarPeralatanController extends Controller
     {
         // dd($request);
         $request->validate([
-            'jenis'=> 'required',
-            'merk'=> 'required',
-            'seri'=> 'required',
-            'kode_barang'=> 'required',
-            'tahun_pengadaan'=> 'required',
-            'divisi'=> 'required',
-            'info'=> 'required',
+            'jenis' => 'required',
+            'merk' => 'required',
+            'seri' => 'required',
+            'kode_barang' => 'required',
+            'tahun_pengadaan' => 'required',
+            'divisi' => 'required',
+            'info' => 'required',
         ]);
 
-        try{
+        try {
             DaftarPeralatan::create([
-                // 'jenis' => $request->jenis,
-                // 'merk' => $request->merk,
-                // 'seri' => $request->seri,
-                'kode_barang'=> $request->kode_barang,
-                'tahun_pengadaan'=> $request->tahun_pengadaan,
-                'divisi'=> $request->divisi,
-                'info'=> $request->unit,
-            ]);
-            peralatan::create([
-                'jenis' => $request->jenis,
-                'merk' => $request->merk,
-                'seri' => $request->seri,
+                'jenis_id' => $request->jenis,
+                'merk_id' => $request->merk,
+                'seri_id' => $request->seri,
+                'kode_barang' => $request->kode_barang,
+                'tahun_pengadaan' => $request->tahun_pengadaan,
+                'divisi' => $request->divisi,
+                'info' => $request->info,
             ]);
             return redirect('/')->with('status', 'Peralatan berhasil ditambah!');
-        }catch(e){echo'Gagal Simpan Data';}
+        } catch (e) {
+            echo 'Gagal Simpan Data';
+        }
     }
 
     /**
@@ -95,9 +99,46 @@ class DaftarPeralatanController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function editView($id)
     {
-        //
+        $jenis = Jenis::get();
+        $merk = Merk::get();
+        $seri = Seri::get();
+        $daftarperalatan = DaftarPeralatan::where('id', $id)->first();
+        // dd($daftarperalatan->seri_id);
+        return view('edit-peralatan', [
+            'daftarperalatan' => $daftarperalatan,
+            'jenis' => $jenis,
+            'merk' => $merk,
+            'seri' => $seri,
+        ]);
+    }
+    public function edit(Request $request, $id)
+    {
+        $request->validate([
+            'jenis' => 'required',
+            'merk' => 'required',
+            'seri' => 'required',
+            'kode_barang' => 'required',
+            'tahun_pengadaan' => 'required',
+            'divisi' => 'required',
+            'info' => 'required',
+        ]);
+
+        try {
+            DaftarPeralatan::where('id', $id)->update([
+                'jenis_id' => $request->jenis,
+                'merk_id' => $request->merk,
+                'seri_id' => $request->seri,
+                'kode_barang' => $request->kode_barang,
+                'tahun_pengadaan' => $request->tahun_pengadaan,
+                'divisi' => $request->divisi,
+                'info' => $request->info,
+            ]);
+            return redirect('/')->with('status', 'Peralatan berhasil ditambah!');
+        } catch (e) {
+            echo 'Gagal Simpan Data';
+        }
     }
 
     /**
