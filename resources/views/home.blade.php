@@ -58,7 +58,7 @@
                     <th>Seri</th>
                     <th>Kode Barang</th>
                     <th>Tahun Pengadaan</th>
-                    <th>Digunakan Unit</th>
+                    <th>Divisi</th>
                     <th></th>
                 </thead>
                 {{-- <tbody>

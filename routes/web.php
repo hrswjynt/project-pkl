@@ -1,11 +1,12 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\JenisPeralatanController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\LogoutController;
 use App\Http\Controllers\RegisterController;
 use App\Http\Controllers\RegistrationController;
+use App\Http\Controllers\JenisPeralatanController;
+use App\Http\Controllers\DaftarPeralatanController;
 
 /*
 |--------------------------------------------------------------------------
@@ -37,6 +38,8 @@ Route::middleware('auth')->group(function () {
     Route::get('/peralatan/edit/{id}', [JenisPeralatanController::class, 'edit']);
     Route::patch('peralatan/{id}', [JenisPeralatanController::class, 'editProcess']);
     Route::delete('peralatan/{id}', [JenisPeralatanController::class, 'delete']);
+
+    Route::resource('daftar_peralatan', [DaftarPeralatanController::class]);
 
     Route::get('logout', [LogoutController::class, 'index']);
 });
