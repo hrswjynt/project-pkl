@@ -44,7 +44,7 @@
 							<input name="nama" type="text" class="form-control" placeholder="Nama">
 						</div>
 						@error('nama')
-							<div class="form-group text-danger">
+							<div class="invalid-feedback">
 								{{ $message }}
 							</div>
 						@enderror
@@ -54,7 +54,7 @@
 							<input name="email" type="email" class="form-control" placeholder="Email">
 						</div>
 						@error('email')
-							<div class="form-group text-danger">
+							<div class="invalid-feedback">
 								{{ $message }}
 							</div>
 						@enderror
@@ -64,7 +64,7 @@
 							<input name="password" type="password" class="form-control" placeholder="Password">
 						</div>
 						@error('password')
-							<div class="form-group text-danger">
+							<div class="invalid-feedback">
 								{{ $message }}
 							</div>
 						@enderror

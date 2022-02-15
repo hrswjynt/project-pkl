@@ -31,12 +31,19 @@ Route::middleware('auth')->group(function () {
         return view('home');
     });
 
-    Route::get('/peralatan', [JenisPeralatanController::class, 'data']);
-    Route::get('/peralatan/add', [JenisPeralatanController::class, 'add']);
-    Route::post('/peralatan', [JenisPeralatanController::class, 'addProcess']);
-    Route::get('/peralatan/edit/{id}', [JenisPeralatanController::class, 'edit']);
-    Route::patch('peralatan/{id}', [JenisPeralatanController::class, 'editProcess']);
-    Route::delete('peralatan/{id}', [JenisPeralatanController::class, 'delete']);
+    Route::get('/peralatan', [JenisPeralatanController::class, 'show']);
+    Route::get('/peralatan/add', [JenisPeralatanController::class, 'showAddForm'])->name('add.peralatan');
+    Route::post('/peralatan/add', [JenisPeralatanController::class, 'submitAddForm']);
+    Route::get('/peralatan/edit/{id}', [JenisPeralatanController::class, 'showEditForm']);
+    Route::patch('/peralatan/edit/', [JenisPeralatanController::class, 'submitEditForm'])->name('edit.peralatan');
+    Route::delete('/peralatan/{id}', [JenisPeralatanController::class, 'destroy']);
+
+    // Route::get('/peralatan', [JenisPeralatanController::class, 'data']);
+    // Route::get('/peralatan/add', [JenisPeralatanController::class, 'add']);
+    // Route::post('/peralatan', [JenisPeralatanController::class, 'addProcess']);
+    // Route::get('/peralatan/edit/{id}', [JenisPeralatanController::class, 'edit']);
+    // Route::patch('peralatan/{id}', [JenisPeralatanController::class, 'editProcess']);
+    // Route::delete('peralatan/{id}', [JenisPeralatanController::class, 'delete']);
 
     Route::get('logout', [LogoutController::class, 'index']);
 });

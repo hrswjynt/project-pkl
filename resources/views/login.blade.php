@@ -37,12 +37,17 @@
 					<img src="img/pupr.png" alt="" width="500">
 					<form action="{{ route('login') }}" method="post">
 						@csrf
+						@if (session('status'))
+							<div class="form-group text-danger">
+								{{ session('status') }}
+							</div>
+						@endif
 						<div class="form-group">
 							<label>Alamat Email</label>
 							<input name="email" type="email" class="form-control" placeholder="Email">
 						</div>
 						@error('email')
-							<div class="form-group text-danger">
+							<div class="invalid-feedback">
 								{{ $message }}
 							</div>
 						@enderror
@@ -52,7 +57,7 @@
 							<input name="password" type="password" class="form-control" placeholder="Password">
 						</div>
 						@error('password')
-							<div class="form-group text-danger">
+							<div class="invalid-feedback">
 								{{ $message }}
 							</div>
 						@enderror

@@ -25,6 +25,8 @@ class LoginController extends Controller
 
         if (Auth::attempt($attributes)) {
             return redirect('/')->with('success', 'You are now logged in');
+        } else {
+            return redirect()->back()->with('status', 'Email or Password does not match our records!');
         }
     }
 }
