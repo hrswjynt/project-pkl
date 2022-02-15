@@ -35,9 +35,13 @@ Route::middleware('auth')->group(function () {
     Route::get('/peralatan', [JenisPeralatanController::class, 'data']);
     Route::get('/peralatan/add', [JenisPeralatanController::class, 'add']);
     Route::post('/peralatan', [JenisPeralatanController::class, 'addProcess']);
+    Route::delete('/peralatan/{id}', [JenisPeralatanController::class, 'destroy']);
     Route::get('/peralatan/edit/{id}', [JenisPeralatanController::class, 'edit']);
     Route::patch('peralatan/{id}', [JenisPeralatanController::class, 'editProcess']);
-    Route::delete('peralatan/{id}', [JenisPeralatanController::class, 'delete']);
+    Route::delete('daftar-peralatan/{id}', [DaftarPeralatanController::class, 'destroy']);
+    Route::get('daftar-peralatan', [DaftarPeralatanController::class, 'createView']);
+    Route::post('daftar-peralatan/add', [DaftarPeralatanController::class, 'create']);
+    Route::get('daftar-peralatan/edit{id}', [DaftarPeralatanController::class, 'edit']);
 
     // Route::resource('daftar_peralatan', [DaftarPeralatanController::class]);
 

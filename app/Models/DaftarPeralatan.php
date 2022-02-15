@@ -2,13 +2,15 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Factories\HasFactory;
+use App\Models\peralatan;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class DaftarPeralatan extends Model
 {
     use HasFactory;
+    protected $guarded=['id'];
     public function peralatan(){
-        return $this->hasMany(DaftarPeralatan::class,'peralatans_id');
+        return $this->belongsTo(peralatan::class);
     }
 }

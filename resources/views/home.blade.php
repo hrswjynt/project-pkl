@@ -42,7 +42,7 @@
                     <strong>Daftar Peralatan</strong>
                 </div>   
                 <div class="pull-right">
-                    <a href="{{ url('peralatan/add') }}" class="btn btn-success btn-sm">
+                    <a href="{{ url('daftar-peralatan') }}" class="btn btn-success btn-sm">
                         <i class="fa fa-plus"></i> Add
                     </a>
                 </div>             
@@ -59,20 +59,27 @@
                     <th>Kode Barang</th>
                     <th>Tahun Pengadaan</th>
                     <th>Divisi</th>
+                    <th>Info</th>
                     <th></th>
                 </thead>
                 <tbody>
                     @foreach ($peralatan as $item)
                         <tr>
                             <td>{{ $loop->iteration }}</td>
-                            <td>{{ $item->jenis }}</td>
-                            <td>{{ $item->merk }}</td>
-                            <td>{{ $item->seri }}</td>
+                            <td>{{ $item->peralatan->jenis }}</td>
+                            <td>{{ $item->peralatan->merk }}</td>
+                            <td>{{ $item->peralatan->seri }}</td>
+                            <td>{{ $item->kode_barang }}</td>
+                            <td>{{ $item->tahun_pengadaan }}</td>
+                            <td>{{ $item->divisi }}</td>
+                            <td>{{ $item->info }}</td>
+
+                            
                             <td class="text-center">
-                                <a href="{{ url('peralatan/edit/' .$item->id) }}" class="btn btn-primary btn-sm">
+                                <a href="{{ url('daftar-peralatan/edit/' .$item->id) }}" class="btn btn-primary btn-sm">
                                     <i class="fa fa-pencil"></i>
                                 </a>
-                                <form action="{{ url('peralatan/' .$item->id) }}" method="post" class="d-inline" onsubmit="return confirm('Yakin hapus data?')">
+                                <form action="{{ url('daftar-peralatan/' .$item->id) }}" method="post" class="d-inline" onsubmit="return confirm('Yakin hapus data?')">
                                     @method('delete')
                                     @csrf
                                     <button class="btn btn-danger btn-sm">

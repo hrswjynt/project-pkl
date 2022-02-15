@@ -11,6 +11,7 @@ class JenisPeralatanController extends Controller
     public function data()
     {
         $peralatan = peralatan::get();
+        
 
         // return $peralatan;
         return view('peralatan.data', ['peralatan' => $peralatan]);
@@ -50,7 +51,7 @@ class JenisPeralatanController extends Controller
 
     public function edit($id)
     {
-        $tool = DB::table('peralatan')->where('id', $id)->first();
+        $tool = peralatan::where('id', $id)->first();
         // dd($tool);
         return view('peralatan/edit', compact('tool'));
     }
@@ -59,10 +60,10 @@ class JenisPeralatanController extends Controller
     {
         $request->validate([
             'jenis'=> 'required',
-            'Merk'=> 'required',
+            'merk'=> 'required',
         ]);
 
-        DB::table('peralatan')->where('id', $id)
+        peralatan::where('id', $id)
             ->update([
                 'jenis' => $request->jenis,
                 'merk' => $request->merk,
@@ -71,9 +72,11 @@ class JenisPeralatanController extends Controller
             return redirect('peralatan')->with('status', 'Peralatan berhasil diubah!');
     }
 
-    public function delete($id)
+    public function destroy($id)
     {
-        DB::table('peralatan')->where('id', $id)->delete();
+        peralatan::destroy($id);
+        // return redirect('/');
+        // $tool = peralatan::where('id', $id)->delete();
         return redirect('peralatan')->with('status', 'Peralatan berhasil dihapus!');
     }
 }

@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\peralatan;
 use Illuminate\Http\Request;
 use App\Models\DaftarPeralatan;
 
@@ -15,9 +16,17 @@ class DaftarPeralatanController extends Controller
     public function index()
     {
         $peralatan=DaftarPeralatan::with('peralatan')->get();
-        dd($peralatan);
+        // dd($peralatan);
         return view('home',[
             'peralatan'=> $peralatan
+        ]);
+    }
+
+    public function createView()
+    {
+        $peralatan=peralatan::all();
+        return view('add-peralatan',[
+            'peralatan'=> $peralatan,
         ]);
     }
 
@@ -26,9 +35,36 @@ class DaftarPeralatanController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create(Request $request)
     {
-        //
+        // dd($request);
+        $request->validate([
+            'jenis'=> 'required',
+            'merk'=> 'required',
+            'seri'=> 'required',
+            'kode_barang'=> 'required',
+            'tahun_pengadaan'=> 'required',
+            'divisi'=> 'required',
+            'info'=> 'required',
+        ]);
+
+        try{
+            DaftarPeralatan::create([
+                // 'jenis' => $request->jenis,
+                // 'merk' => $request->merk,
+                // 'seri' => $request->seri,
+                'kode_barang'=> $request->kode_barang,
+                'tahun_pengadaan'=> $request->tahun_pengadaan,
+                'divisi'=> $request->divisi,
+                'info'=> $request->unit,
+            ]);
+            peralatan::create([
+                'jenis' => $request->jenis,
+                'merk' => $request->merk,
+                'seri' => $request->seri,
+            ]);
+            return redirect('/')->with('status', 'Peralatan berhasil ditambah!');
+        }catch(e){echo'Gagal Simpan Data';}
     }
 
     /**
@@ -84,6 +120,7 @@ class DaftarPeralatanController extends Controller
      */
     public function destroy($id)
     {
-        //
+        DaftarPeralatan::destroy($id);
+        return redirect('/')->with('status', 'Peralatan berhasil dihapus!');
     }
 }

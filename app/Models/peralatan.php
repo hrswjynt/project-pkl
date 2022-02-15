@@ -12,7 +12,7 @@ class peralatan extends Model
 
     protected $guarded=['id'];
     public function daftarPeralatan(){
-        return $this->belongsTo(DaftarPeralatan::class);
+        return $this->hasMany(DaftarPeralatan::class);
     }
 }
 
