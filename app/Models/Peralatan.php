@@ -14,4 +14,9 @@ class Peralatan extends Model
         'merk',
         'seri'
     ];
+
+    public function daftarPeralatan()
+    {
+        return $this->belongsToMany(DaftarPeralatan::class);
+    }
 }

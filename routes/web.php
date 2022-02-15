@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\DaftarPeralatanController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\JenisPeralatanController;
 use App\Http\Controllers\LoginController;
@@ -27,9 +28,7 @@ Route::middleware('guest')->group(function () {
 });
 
 Route::middleware('auth')->group(function () {
-    Route::get('/', function () {
-        return view('home');
-    });
+    Route::get('/', [DaftarPeralatanController::class, 'show']);
 
     Route::get('/peralatan', [JenisPeralatanController::class, 'show']);
     Route::get('/peralatan/add', [JenisPeralatanController::class, 'showAddForm'])->name('add.peralatan');
@@ -37,6 +36,7 @@ Route::middleware('auth')->group(function () {
     Route::get('/peralatan/edit/{id}', [JenisPeralatanController::class, 'showEditForm']);
     Route::patch('/peralatan/edit/', [JenisPeralatanController::class, 'submitEditForm'])->name('edit.peralatan');
     Route::delete('/peralatan/{id}', [JenisPeralatanController::class, 'destroy']);
+
 
     Route::get('logout', [LogoutController::class, 'index']);
 });
