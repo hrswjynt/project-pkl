@@ -45,7 +45,11 @@
 						<a href="{{ url('/peralatan') }}"> <i class="menu-icon fa fa-list-alt"></i>Jenis Peralatan </a>
 					</li>
 					<li>
-						<a href=""> <i class="menu-icon fa fa-sign-out"></i>Logout </a>
+						{{-- <form action="{{ route(logout) }}" method="post">
+							@csrf
+                            <button type="submit"></button>
+						</form> --}}
+                        <a href="{{ url('/logout') }}"> <i class="menu-icon fa fa-sign-out"></i>Logout </a>
 					</li>
 				</ul>
 			</div>

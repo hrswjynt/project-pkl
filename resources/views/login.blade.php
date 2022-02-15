@@ -66,6 +66,12 @@
 			</div>
 		</div>
 	</div>
+
+	@if (session('msg'))
+		<script>
+		 alert("{{ session('msg') }}")
+		</script>
+	@endif
 </body>
 
 </html>
