@@ -17,7 +17,7 @@
                 <div class="page-title">
                     <ol class="breadcrumb text-right">
                         <li><a href="#">Peralatan</a></li>
-                        <li class="active">Add</li>
+                        <li class="active">Edit</li>
                     </ol>
                 </div>
             </div>
@@ -38,7 +38,7 @@
                         <strong>Edit Daftar Peralatan</strong>
                     </div>
                     <div class="pull-right">
-                        <a href="{{ url('daftar-peralatan') }}" class="btn btn-secondary btn-sm">
+                        <a href="{{ url('/') }}" class="btn btn-secondary btn-sm">
                             <i class="fa fa-undo"></i> Back
                         </a>
                     </div>

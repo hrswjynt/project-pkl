@@ -38,7 +38,7 @@
                         <strong>Tambah Daftar Peralatan</strong>
                     </div>
                     <div class="pull-right">
-                        <a href="{{ url('daftar-peralatan') }}" class="btn btn-secondary btn-sm">
+                        <a href="{{ url('/') }}" class="btn btn-secondary btn-sm">
                             <i class="fa fa-undo"></i> Back
                         </a>
                     </div>

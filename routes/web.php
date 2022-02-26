@@ -7,6 +7,7 @@ use App\Http\Controllers\LoginController;
 use App\Http\Controllers\LogoutController;
 use App\Http\Controllers\RegisterController;
 use App\Http\Controllers\RegistrationController;
+use App\Http\Controllers\ForgotPasswordController;
 use App\Http\Controllers\JenisPeralatanController;
 use App\Http\Controllers\DaftarPeralatanController;
 
@@ -25,12 +26,17 @@ Route::middleware('guest')->group(function () {
     Route::get('/login', [LoginController::class, 'create'])->name('login');
     Route::post('/login', [LoginController::class, 'store']);
 
+    Route::get('forget-password', [ForgotPasswordController::class, 'showForgetPasswordForm'])->name('forget.password.get');
+    Route::post('forget-password', [ForgotPasswordController::class, 'submitForgetPasswordForm'])->name('forget.password.post');
+    Route::get('reset-password/{token}', [ForgotPasswordController::class, 'showResetPasswordForm'])->name('reset.password.get');
+    Route::post('reset-password', [ForgotPasswordController::class, 'submitResetPasswordForm'])->name('reset.password.post');
+
     Route::get('/register', [RegistrationController::class, 'create'])->name('register');
     Route::post('/register', [RegistrationController::class, 'store']);
 });
 
 Route::middleware('auth')->group(function () {
-    Route::get('/', [DaftarPeralatanController::class, 'index']);
+    Route::get('/daftar-alat', [DaftarPeralatanController::class, 'index']);
 
     Route::get('/peralatan', [JenisPeralatanController::class, 'data']);
     Route::get('/peralatan/add', [JenisPeralatanController::class, 'add']);
@@ -43,8 +49,6 @@ Route::middleware('auth')->group(function () {
     Route::post('daftar-peralatan/add', [DaftarPeralatanController::class, 'create']);
     Route::get('daftar-peralatan/edit/{id}', [DaftarPeralatanController::class, 'editView']);
     Route::post('daftar-peralatan/editData/{id}', [DaftarPeralatanController::class, 'edit']);
-
-    // Route::resource('daftar_peralatan', [DaftarPeralatanController::class]);
 
     Route::get('logout', [LogoutController::class, 'index']);
 });

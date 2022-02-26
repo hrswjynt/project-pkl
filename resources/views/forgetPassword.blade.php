@@ -3,7 +3,7 @@
 <head>
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<title>Login</title>
+	<title>Register</title>
 	<meta name="description" content="Sufee Admin - HTML5 Admin Template">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<link rel="apple-touch-icon" href="apple-icon.png">
@@ -25,6 +25,8 @@
 	<script src="{{ asset('style/assets/js/plugins.js') }}"></script>
 	<script src="{{ asset('style/assets/js/main.js') }}"></script>
 
+
+
 	<div class="sufee-login d-flex align-content-center flex-wrap">
 		<div class="container">
 			<div class="login-content">
@@ -34,53 +36,29 @@
 					</a>
 				</div>
 				<div class="login-form">
-					<img src="img/pupr.png" alt="" width="500">
-					<form action="{{ route('login') }}" method="post">
+					<h2 class="text-align center">Reset Password</h2>
+					<form action="{{ route('forget.password.post') }}" method="post">
 						@csrf
 						<div class="form-group">
 							<label>Alamat Email</label>
-							<input name="email" type="email" class="form-control" placeholder="Email">
+							<input name="email" type="email" class="form-control" placeholder="Email" required autofocus>
+                            @if ($errors->has('email'))
+                                <span class="text-danger">{{ $errors->first('email') }}</span>
+                            @endif
 						</div>
-						@error('email')
+						{{-- @error('email')
 							<div class="form-group text-danger">
 								{{ $message }}
 							</div>
-						@enderror
+						@enderror --}}
 
-						<div class="form-group">
-							<label>Password</label>
-							<input name="password" type="password" class="form-control" placeholder="Password">
-						</div>
-						@error('password')
-							<div class="form-group text-danger">
-								{{ $message }}
-							</div>
-						@enderror
-						<div class="checkbox">
-                            <label>
-                                <input type="checkbox"> Remember Me
-                            </label>
-                            <label class="pull-right">
-                                <a href="{{ url('forget-password') }}">Forgotten Password?</a>
-                            </label>
+						<button type="submit" class="btn btn-primary btn-flat m-b-15">Send Password Reset Link</button>
 
-                        </div>
-
-						<button type="submit" class="btn btn-success btn-flat m-b-30 m-t-30">Masuk</button>
-						<div class="register-link m-t-15 text-center">
-							<p>Tidak Punya Akun ? <a href="{{ url('register') }}"> Daftar Disini</a></p>
-						</div>
 					</form>
 				</div>
 			</div>
 		</div>
 	</div>
-
-	@if (session('msg'))
-		<script>
-		 alert("{{ session('msg') }}")
-		</script>
-	@endif
 </body>
 
 </html>

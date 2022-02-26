@@ -17,7 +17,8 @@
             <div class="page-title">
                 <ol class="breadcrumb text-right">
                     <li><a href="#">Peralatan</a></li>
-                    <li class="active">Data</li>
+                    <li><a href="#">Data</a></li>
+                    <li class="active">add</li>
                 </ol>
             </div>
         </div>
